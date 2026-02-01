@@ -1,15 +1,46 @@
 @import "tailwindcss";
 
 /* Custom CSS Variables for N1STACK Design System */
+/* Light Mode (Default) */
 :root {
-  --color-canvas: #020617;
-  --color-canvas-light: #0f172a;
-  --color-neon-lime: #D4FF00;
-  --color-neon-lime-dark: #b8e000;
+  --color-canvas: #f8fafc;
+  --color-canvas-alt: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-neon-lime: #84cc16;
+  --color-neon-lime-dark: #65a30d;
+  --color-neon-lime-bg: rgba(132, 204, 22, 0.1);
   --color-whatsapp-dark: #005c4b;
   --color-whatsapp-light: #25D366;
+  --color-input-bg: #f1f5f9;
+  --color-card-bg: rgba(255, 255, 255, 0.8);
+  --color-card-border: rgba(15, 23, 42, 0.08);
+  --color-header-bg: rgba(248, 250, 252, 0.9);
   --font-inter: 'Inter', sans-serif;
   --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --color-canvas: #020617;
+  --color-canvas-alt: #0f172a;
+  --color-surface: #0f172a;
+  --color-surface-alt: #1e293b;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-neon-lime: #D4FF00;
+  --color-neon-lime-dark: #b8e000;
+  --color-neon-lime-bg: rgba(212, 255, 0, 0.1);
+  --color-input-bg: rgba(15, 23, 42, 0.8);
+  --color-card-bg: rgba(15, 23, 42, 0.6);
+  --color-card-border: rgba(255, 255, 255, 0.05);
+  --color-header-bg: rgba(2, 6, 23, 0.8);
 }
 
 /* Base Styles */
@@ -22,9 +53,10 @@
 body {
   font-family: var(--font-inter);
   background-color: var(--color-canvas);
-  color: #f8fafc;
+  color: var(--color-text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Hide scrollbar but allow scroll */
@@ -43,8 +75,25 @@ body {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+/* Mobile Overflow Prevention */
+@media (max-width: 767px) {
+
+  .glass-card,
+  .content-card {
+    width: 100% !important;
+    max-width: calc(100vw - 24px) !important;
+    box-sizing: border-box !important;
+  }
+
+  .container-padded>* {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 @media (min-width: 768px) {
@@ -134,12 +183,15 @@ body {
 
 /* Glassmorphism Card */
 .glass-card {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 16px;
   padding: 24px;
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -150,21 +202,28 @@ body {
 
 /* Content Card with generous internal padding */
 .content-card {
-  padding: 48px 40px 64px 40px;
-  margin-bottom: 48px;
+  padding: 24px 16px 32px 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 480px) {
+  .content-card {
+    padding: 32px 24px 48px 24px;
+    margin-bottom: 32px;
+  }
 }
 
 @media (min-width: 768px) {
   .content-card {
-    padding: 64px 40px 80px 40px;
-    margin-bottom: 64px;
+    padding: 48px 32px 64px 32px;
+    margin-bottom: 48px;
   }
 }
 
 @media (min-width: 1024px) {
   .content-card {
-    padding: 80px 48px 96px 48px;
-    margin-bottom: 80px;
+    padding: 64px 40px 80px 40px;
+    margin-bottom: 64px;
   }
 }
 
@@ -283,11 +342,13 @@ body {
 /* Input Styles */
 .input-field {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 14px 18px;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  background: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
   font-size: 14px;
   font-family: var(--font-inter);
   transition: all 0.3s ease;
@@ -296,16 +357,18 @@ body {
 .input-field:focus {
   outline: none;
   border-color: var(--color-neon-lime);
-  box-shadow: 0 0 0 3px rgba(212, 255, 0, 0.1);
+  box-shadow: 0 0 0 3px var(--color-neon-lime-bg);
 }
 
 .input-field::placeholder {
-  color: #475569;
+  color: var(--color-text-muted);
 }
 
 /* Textarea Styles */
 .textarea-field {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 120px;
   padding: 14px 18px;
   border-radius: 12px;
@@ -335,6 +398,7 @@ body {
   color: #a3e635;
   overflow-x: auto;
   position: relative;
+  max-width: 100%;
 }
 
 .code-box::before {
@@ -695,6 +759,7 @@ body {
 /* Phone Row Styles */
 .phone-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   align-items: center;
   padding: 12px;
@@ -705,7 +770,14 @@ body {
 }
 
 .phone-row input {
-  flex: 1;
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+@media (min-width: 480px) {
+  .phone-row input {
+    flex: 1 1 auto;
+  }
 }
 
 .remove-btn {

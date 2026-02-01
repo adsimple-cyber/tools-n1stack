@@ -90,7 +90,7 @@ const CSRotatorTab = ({ setPreviewData }) => {
         const phoneList = phones.filter(p => p.number).map((p, i) => `${i + 1}. ${p.name}: ${p.number}`).join('\n')
         setPreviewData({
             type: 'rotator',
-            content: `📞 *CS ROTATOR ACTIVE*\n\nTeam Members:\n${phoneList}\n\n_Round Robin rotation enabled_`,
+            content: `📞 *CS ROTATOR AKTIF*\n\nAnggota Tim:\n${phoneList}\n\n_Rotasi Round Robin diaktifkan_`,
             phone: '',
             linkPreview: null
         })
@@ -106,60 +106,61 @@ const CSRotatorTab = ({ setPreviewData }) => {
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                    <Users className="w-6 h-6 text-[#D4FF00]" />
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4FF00]" />
                     CS Rotator
                 </h2>
-                <p className="text-slate-400 text-sm">Distribute customers evenly across your support team</p>
+                <p className="text-slate-400 text-sm">Distribusikan pelanggan merata ke tim support Anda</p>
             </div>
 
             <div className="divider"></div>
 
             {/* Team Members */}
             <div>
-                <label className="label">Team Phone Numbers</label>
+                <label className="label">Nomor Telepon Tim</label>
                 <div className="space-y-3">
                     {phones.map((phone, index) => (
-                        <div key={index} className="phone-row">
-                            <div className="w-8 h-8 rounded-lg bg-[#D4FF00]/20 flex items-center justify-center text-[#D4FF00] font-bold text-sm flex-shrink-0">
-                                {index + 1}
+                        <div key={index} className="p-3 bg-slate-800/40 rounded-xl border border-white/5">
+                            <div className="flex items-center gap-2 mb-3">
+                                <div className="w-8 h-8 rounded-lg bg-[#D4FF00]/20 flex items-center justify-center text-[#D4FF00] font-bold text-sm flex-shrink-0">
+                                    {index + 1}
+                                </div>
+                                <input
+                                    type="text"
+                                    className="input-field flex-1"
+                                    placeholder="Nama (cth: CS Andi)"
+                                    value={phone.name}
+                                    onChange={(e) => updatePhone(index, 'name', e.target.value)}
+                                />
+                                {phones.length > 1 && (
+                                    <button
+                                        className="remove-btn flex-shrink-0"
+                                        onClick={() => removePhone(index)}
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </button>
+                                )}
                             </div>
                             <input
                                 type="text"
-                                className="input-field"
-                                placeholder="Name (e.g., CS Andi)"
-                                value={phone.name}
-                                onChange={(e) => updatePhone(index, 'name', e.target.value)}
-                                style={{ flex: '0 0 40%' }}
-                            />
-                            <input
-                                type="text"
-                                className="input-field flex-1"
+                                className="input-field w-full"
                                 placeholder="+62812345678"
                                 value={phone.number}
                                 onChange={(e) => updatePhone(index, 'number', e.target.value)}
                             />
-                            {phones.length > 1 && (
-                                <button
-                                    className="remove-btn"
-                                    onClick={() => removePhone(index)}
-                                >
-                                    <Trash2 className="w-4 h-4" />
-                                </button>
-                            )}
                         </div>
                     ))}
                 </div>
 
                 <button className="add-btn mt-3" onClick={addPhone}>
                     <Plus className="w-4 h-4" />
-                    Add Team Member
+                    Tambah Anggota Tim
                 </button>
             </div>
 
             {/* Button Text */}
             <div>
-                <label className="label">Button Text</label>
+                <label className="label">Teks Tombol</label>
                 <input
                     type="text"
                     className="input-field"
@@ -170,23 +171,23 @@ const CSRotatorTab = ({ setPreviewData }) => {
             </div>
 
             {/* How it works */}
-            <div className="glass-card p-4 bg-gradient-to-r from-blue-500/10 to-transparent border-l-4 border-blue-500">
+            <div className="glass-card p-3 sm:p-4 bg-gradient-to-r from-blue-500/10 to-transparent border-l-4 border-blue-500">
                 <h4 className="text-white font-semibold mb-2 flex items-center gap-2">
                     <Code className="w-4 h-4" />
-                    How it works
+                    Cara Kerja
                 </h4>
                 <p className="text-slate-400 text-sm">
-                    The script distributes visitors evenly using Round Robin rotation.
-                    Each click routes to the next phone number in sequence, stored in localStorage
-                    for consistent distribution.
+                    Script ini mendistribusikan pengunjung secara merata menggunakan rotasi Round Robin.
+                    Setiap klik diarahkan ke nomor berikutnya secara berurutan, disimpan di localStorage
+                    untuk distribusi yang konsisten.
                 </p>
             </div>
 
             {/* Generated Code */}
             <div>
-                <label className="label">Generated Code Snippet</label>
+                <label className="label">Kode yang Dihasilkan</label>
                 <div className="code-box max-h-64 overflow-y-auto">
-                    <pre>{generateScript()}</pre>
+                    <pre className="text-xs break-all whitespace-pre-wrap">{generateScript()}</pre>
                 </div>
 
                 <button
@@ -194,7 +195,7 @@ const CSRotatorTab = ({ setPreviewData }) => {
                     onClick={copyToClipboard}
                 >
                     <Copy className="w-4 h-4" />
-                    {copied ? 'Copied!' : 'Copy Code'}
+                    {copied ? 'Tersalin!' : 'Salin Kode'}
                 </button>
             </div>
         </div>

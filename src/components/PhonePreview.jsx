@@ -96,10 +96,10 @@ const PhonePreview = ({ previewData }) => {
     }
 
     return (
-        <div className="hidden xl:block sticky top-28 pr-4 h-[calc(100vh-40px)] flex items-center justify-center">
+        <div className="w-full lg:w-auto lg:sticky lg:top-28 lg:pr-4 h-[450px] lg:h-[calc(100vh-40px)] flex items-start lg:items-center justify-center overflow-hidden">
             {/* Clean Modern Frame (create.wa.link style) */}
             <div
-                className="relative bg-white rounded-[40px] overflow-hidden mx-auto select-none shadow-2xl"
+                className="relative bg-white rounded-[40px] overflow-hidden mx-auto select-none shadow-2xl scale-[0.5] lg:scale-100 origin-top"
                 style={{
                     width: '375px',
                     height: '812px',

@@ -3,7 +3,7 @@ import { FileText, Copy, Plus, Trash2 } from 'lucide-react'
 
 const InvoiceModeTab = ({ setPreviewData }) => {
     const [items, setItems] = useState([
-        { name: 'Website Development', qty: 1, price: 5000000 }
+        { name: 'Pembuatan Website', qty: 1, price: 5000000 }
     ])
     const [bankInfo, setBankInfo] = useState({
         bankName: 'BCA',
@@ -57,12 +57,12 @@ const InvoiceModeTab = ({ setPreviewData }) => {
         message += `*TOTAL: ${formatCurrency(calculateTotal())}*\n`
         message += `━━━━━━━━━━━━━━━━\n\n`
 
-        message += `💳 *Payment Info:*\n`
+        message += `💳 *Info Pembayaran:*\n`
         message += `Bank: ${bankInfo.bankName}\n`
         message += `No. Rek: ${bankInfo.accountNumber}\n`
         message += `A/N: ${bankInfo.accountHolder}\n\n`
 
-        message += `_Thank you for your order!_\n`
+        message += `_Terima kasih atas pesanan Anda!_\n`
         message += `_Powered by N1STACK_`
 
         return message
@@ -88,21 +88,21 @@ const InvoiceModeTab = ({ setPreviewData }) => {
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                    <FileText className="w-6 h-6 text-[#D4FF00]" />
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4FF00]" />
                     Invoice Mode
                 </h2>
-                <p className="text-slate-400 text-sm">Generate professional invoice messages for WhatsApp</p>
+                <p className="text-slate-400 text-sm">Buat pesan invoice profesional untuk WhatsApp</p>
             </div>
 
             <div className="divider"></div>
 
             {/* Items */}
             <div>
-                <label className="label">Invoice Items</label>
+                <label className="label">Daftar Item</label>
                 <div className="space-y-3">
                     {items.map((item, index) => (
-                        <div key={index} className="glass-card p-4 space-y-3">
+                        <div key={index} className="glass-card p-3 sm:p-4 space-y-3">
                             <div className="flex items-center justify-between">
                                 <span className="text-xs text-slate-500 font-medium">ITEM #{index + 1}</span>
                                 {items.length > 1 && (
@@ -118,14 +118,14 @@ const InvoiceModeTab = ({ setPreviewData }) => {
                             <input
                                 type="text"
                                 className="input-field"
-                                placeholder="Product/Service Name"
+                                placeholder="Nama Produk/Jasa"
                                 value={item.name}
                                 onChange={(e) => updateItem(index, 'name', e.target.value)}
                             />
 
-                            <div className="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label className="text-xs text-slate-500 mb-1 block">Quantity</label>
+                            <div className="flex flex-col sm:flex-row gap-3">
+                                <div className="flex-1">
+                                    <label className="text-xs text-slate-500 mb-1 block">Jumlah</label>
                                     <input
                                         type="number"
                                         className="input-field"
@@ -135,8 +135,8 @@ const InvoiceModeTab = ({ setPreviewData }) => {
                                         onChange={(e) => updateItem(index, 'qty', e.target.value)}
                                     />
                                 </div>
-                                <div>
-                                    <label className="text-xs text-slate-500 mb-1 block">Price (Rp)</label>
+                                <div className="flex-1">
+                                    <label className="text-xs text-slate-500 mb-1 block">Harga (Rp)</label>
                                     <input
                                         type="number"
                                         className="input-field"
@@ -150,7 +150,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
 
                             <div className="pt-2 border-t border-white/5 flex justify-between items-center">
                                 <span className="text-xs text-slate-500">Subtotal</span>
-                                <span className="text-[#D4FF00] font-bold">{formatCurrency(item.qty * item.price)}</span>
+                                <span className="text-[#D4FF00] font-bold text-sm sm:text-base">{formatCurrency(item.qty * item.price)}</span>
                             </div>
                         </div>
                     ))}
@@ -158,40 +158,40 @@ const InvoiceModeTab = ({ setPreviewData }) => {
 
                 <button className="add-btn mt-3" onClick={addItem}>
                     <Plus className="w-4 h-4" />
-                    Add Item
+                    Tambah Item
                 </button>
             </div>
 
             {/* Total */}
-            <div className="glass-card p-4 bg-gradient-to-r from-[#D4FF00]/10 to-transparent border-l-4 border-[#D4FF00]">
+            <div className="glass-card p-3 sm:p-4 bg-gradient-to-r from-[#D4FF00]/10 to-transparent border-l-4 border-[#D4FF00]">
                 <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold text-white">Grand Total</span>
-                    <span className="text-2xl font-bold text-[#D4FF00]">{formatCurrency(calculateTotal())}</span>
+                    <span className="text-base sm:text-lg font-bold text-white">Total</span>
+                    <span className="text-lg sm:text-2xl font-bold text-[#D4FF00]">{formatCurrency(calculateTotal())}</span>
                 </div>
             </div>
 
             {/* Bank Info */}
             <div>
-                <label className="label">Payment Information</label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <label className="label">Informasi Pembayaran</label>
+                <div className="flex flex-col gap-3">
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Bank Name"
+                        placeholder="Nama Bank"
                         value={bankInfo.bankName}
                         onChange={(e) => setBankInfo({ ...bankInfo, bankName: e.target.value })}
                     />
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Account Number"
+                        placeholder="Nomor Rekening"
                         value={bankInfo.accountNumber}
                         onChange={(e) => setBankInfo({ ...bankInfo, accountNumber: e.target.value })}
                     />
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Account Holder"
+                        placeholder="Nama Pemilik Rekening"
                         value={bankInfo.accountHolder}
                         onChange={(e) => setBankInfo({ ...bankInfo, accountHolder: e.target.value })}
                     />
@@ -201,7 +201,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
             {/* Generate Button */}
             <button className="btn-neon w-full flex items-center justify-center gap-2" onClick={copyToClipboard}>
                 <Copy className="w-4 h-4" />
-                {copied ? 'Copied!' : 'Copy Invoice Message'}
+                {copied ? 'Tersalin!' : 'Salin Pesan Invoice'}
             </button>
         </div>
     )

@@ -108,7 +108,7 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
     useEffect(() => {
         setPreviewData({
             type: 'widget',
-            content: `📱 *FLOATING WIDGET*\n\nPosition: ${config.position}\nAnimation: ${config.animation}\nSize: ${config.size}px\n\n_Widget ready for deployment_`,
+            content: `📱 *FLOATING WIDGET*\n\nPosisi: ${config.position}\nAnimasi: ${config.animation}\nUkuran: ${config.size}px\n\n_Widget siap digunakan_`,
             phone: config.phone,
             linkPreview: null,
             widgetConfig: config
@@ -125,18 +125,18 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-3">
-                    <MessageCircle className="w-6 h-6 text-[#D4FF00]" />
-                    Floating Widget Baker
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 flex items-center gap-3">
+                    <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4FF00]" />
+                    Widget Baker
                 </h2>
-                <p className="text-slate-400 text-sm">Create sticky WhatsApp buttons for your website</p>
+                <p className="text-slate-400 text-sm">Buat tombol WhatsApp mengambang untuk website Anda</p>
             </div>
 
             <div className="divider"></div>
 
             {/* Phone Number */}
             <div>
-                <label className="label">WhatsApp Number</label>
+                <label className="label">Nomor WhatsApp</label>
                 <input
                     type="text"
                     className="input-field"
@@ -148,7 +148,7 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
 
             {/* Default Message */}
             <div>
-                <label className="label">Pre-filled Message</label>
+                <label className="label">Pesan Otomatis</label>
                 <textarea
                     className="textarea-field"
                     placeholder="Halo, saya tertarik dengan..."
@@ -159,38 +159,38 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
             </div>
 
             {/* Position & Animation */}
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                    <label className="label">Position</label>
+            <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                    <label className="label">Posisi</label>
                     <select
                         className="select-field"
                         value={config.position}
                         onChange={(e) => setConfig({ ...config, position: e.target.value })}
                     >
-                        <option value="bottom-right">Bottom Right</option>
-                        <option value="bottom-left">Bottom Left</option>
-                        <option value="top-right">Top Right</option>
-                        <option value="top-left">Top Left</option>
+                        <option value="bottom-right">Kanan Bawah</option>
+                        <option value="bottom-left">Kiri Bawah</option>
+                        <option value="top-right">Kanan Atas</option>
+                        <option value="top-left">Kiri Atas</option>
                     </select>
                 </div>
-                <div>
-                    <label className="label">Animation</label>
+                <div className="flex-1">
+                    <label className="label">Animasi</label>
                     <select
                         className="select-field"
                         value={config.animation}
                         onChange={(e) => setConfig({ ...config, animation: e.target.value })}
                     >
-                        <option value="pulse">Pulse Glow</option>
-                        <option value="bounce">Bounce</option>
-                        <option value="shake">Shake</option>
-                        <option value="none">No Animation</option>
+                        <option value="pulse">Berdenyut</option>
+                        <option value="bounce">Memantul</option>
+                        <option value="shake">Bergetar</option>
+                        <option value="none">Tanpa Animasi</option>
                     </select>
                 </div>
             </div>
 
             {/* Size */}
             <div>
-                <label className="label">Button Size: {config.size}px</label>
+                <label className="label">Ukuran Tombol: {config.size}px</label>
                 <input
                     type="range"
                     min="40"
@@ -200,8 +200,8 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
                     className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#D4FF00]"
                 />
                 <div className="flex justify-between text-xs text-slate-500 mt-1">
-                    <span>Small (40px)</span>
-                    <span>Large (80px)</span>
+                    <span>Kecil (40px)</span>
+                    <span>Besar (80px)</span>
                 </div>
             </div>
 
@@ -212,7 +212,7 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
                     onClick={() => setShowPreview(!showPreview)}
                 >
                     <Eye className="w-4 h-4" />
-                    {showPreview ? 'Hide Preview' : 'Show Live Preview'}
+                    {showPreview ? 'Sembunyikan Preview' : 'Lihat Preview'}
                 </button>
 
                 {showPreview && (
@@ -244,9 +244,9 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
 
             {/* Generated Code */}
             <div>
-                <label className="label">Generated Code</label>
+                <label className="label">Kode yang Dihasilkan</label>
                 <div className="code-box max-h-48 overflow-y-auto">
-                    <pre>{generateCode()}</pre>
+                    <pre className="text-xs break-all whitespace-pre-wrap">{generateCode()}</pre>
                 </div>
 
                 <button
@@ -254,7 +254,7 @@ const FloatingWidgetTab = ({ setPreviewData }) => {
                     onClick={copyToClipboard}
                 >
                     <Copy className="w-4 h-4" />
-                    {copied ? 'Copied!' : 'Copy Widget Code'}
+                    {copied ? 'Tersalin!' : 'Salin Kode Widget'}
                 </button>
             </div>
         </div>

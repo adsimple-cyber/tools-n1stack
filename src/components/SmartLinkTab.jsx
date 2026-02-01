@@ -101,22 +101,22 @@ const SmartLinkTab = ({ setPreviewData }) => {
             return {
                 className: 'spam-safe',
                 icon: <CheckCircle className="w-5 h-5" />,
-                text: '✅ Safe & Natural',
-                subtext: 'Your message looks authentic'
+                text: '✅ Aman & Natural',
+                subtext: 'Pesan Anda terlihat otentik'
             }
         } else if (spamScore <= 70) {
             return {
                 className: 'spam-warning',
                 icon: <AlertTriangle className="w-5 h-5" />,
-                text: '⚠️ Be Careful',
-                subtext: 'Consider reducing promotional words'
+                text: '⚠️ Hati-hati',
+                subtext: 'Kurangi kata-kata promosi'
             }
         } else {
             return {
                 className: 'spam-danger',
                 icon: <XCircle className="w-5 h-5" />,
-                text: '⛔ HIGH BAN RISK!',
-                subtext: 'Reduce caps & spam words immediately'
+                text: '⛔ RISIKO BLOKIR TINGGI!',
+                subtext: 'Kurangi huruf kapital & kata spam'
             }
         }
     }
@@ -171,13 +171,13 @@ const SmartLinkTab = ({ setPreviewData }) => {
 
             {/* Phone Input with Country Code Selector */}
             <div>
-                <label className="label">Phone Number</label>
-                <div className="flex gap-2">
+                <label className="label">Nomor Telepon</label>
+                <div className="flex flex-col sm:flex-row gap-2">
                     {/* Country Code Dropdown */}
                     <div className="relative" ref={dropdownRef}>
                         <button
                             type="button"
-                            className="input-field flex items-center gap-2 min-w-[140px] justify-between cursor-pointer"
+                            className="input-field flex items-center gap-2 w-full sm:w-auto sm:min-w-[140px] justify-between cursor-pointer"
                             onClick={() => setShowDropdown(!showDropdown)}
                         >
                             <span className="flex items-center gap-2">
@@ -192,7 +192,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
                         </button>
 
                         {showDropdown && (
-                            <div className="absolute top-full left-0 mt-2 w-64 max-h-64 overflow-y-auto glass-card border border-white/10 rounded-lg z-50">
+                            <div className="absolute top-full left-0 mt-2 w-full sm:w-64 max-h-64 overflow-y-auto glass-card border border-white/10 rounded-lg z-50">
                                 {COUNTRY_CODES.map((country) => (
                                     <button
                                         key={country.code}
@@ -225,33 +225,33 @@ const SmartLinkTab = ({ setPreviewData }) => {
                         onChange={(e) => setPhone(e.target.value)}
                     />
                 </div>
-                <p className="text-xs text-slate-500 mt-2">Just enter your phone number without 0 or country code</p>
+                <p className="text-xs text-slate-500 mt-2">Masukkan nomor tanpa 0 atau kode negara</p>
             </div>
 
             {/* Message Input with Toolbar */}
             <div>
-                <label className="label">Message Template</label>
+                <label className="label">Template Pesan</label>
 
                 {/* Rich Text Toolbar */}
                 <div className="flex gap-2 mb-3">
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('*', '*')}
-                        title="Bold"
+                        title="Tebal"
                     >
                         <Bold className="w-4 h-4" />
                     </button>
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('_', '_')}
-                        title="Italic"
+                        title="Miring"
                     >
                         <Italic className="w-4 h-4" />
                     </button>
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('~', '~')}
-                        title="Strikethrough"
+                        title="Coret"
                     >
                         <Strikethrough className="w-4 h-4" />
                     </button>
@@ -260,7 +260,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
                 <textarea
                     ref={textareaRef}
                     className="textarea-field"
-                    placeholder="Type your message here... Use *bold*, _italic_, ~strikethrough~"
+                    placeholder="Ketik pesan Anda... Gunakan *tebal*, _miring_, ~coret~"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={5}
@@ -270,7 +270,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
             {/* Spam Score Indicator */}
             <div>
                 <label className="label">Safe-Send Analyzer</label>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center gap-4">
                     {/* Score Circle */}
                     <div className="relative w-20 h-20 flex-shrink-0">
                         <svg className="w-full h-full transform -rotate-90">
@@ -303,7 +303,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
                     </div>
 
                     {/* Status */}
-                    <div className={`spam-indicator flex-1 ${indicator.className}`}>
+                    <div className={`spam-indicator flex-1 w-full sm:w-auto ${indicator.className}`}>
                         <div>
                             <div className="flex items-center gap-2">
                                 {indicator.icon}
@@ -318,19 +318,19 @@ const SmartLinkTab = ({ setPreviewData }) => {
             {/* Generated Link */}
             {phone && message && (
                 <div>
-                    <label className="label">Generated Link</label>
-                    <div className="code-box">
-                        <pre className="text-xs break-all">{generateLink()}</pre>
+                    <label className="label">Link yang Dihasilkan</label>
+                    <div className="code-box overflow-x-auto">
+                        <pre className="text-xs break-all whitespace-pre-wrap">{generateLink()}</pre>
                     </div>
 
-                    <div className="flex gap-3 mt-4">
+                    <div className="flex flex-col sm:flex-row gap-3 mt-4">
                         <button className="btn-neon flex-1 flex items-center justify-center gap-2" onClick={copyToClipboard}>
                             <Copy className="w-4 h-4" />
-                            {copied ? 'Copied!' : 'Copy Link'}
+                            {copied ? 'Tersalin!' : 'Salin Link'}
                         </button>
                         <button className="btn-secondary flex items-center justify-center gap-2 px-6" onClick={openLink}>
                             <ExternalLink className="w-4 h-4" />
-                            Test
+                            Coba
                         </button>
                     </div>
                 </div>
