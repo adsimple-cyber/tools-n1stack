@@ -119,7 +119,7 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Team Members */}
             <div>
-                <label className="label">Nomor Telepon Tim</label>
+                <label className="label">{t.agentList}</label>
                 <div className="space-y-3">
                     {phones.map((phone, index) => (
                         <div key={index} className="p-3 bg-slate-800/40 rounded-xl border border-white/5">
@@ -130,7 +130,7 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
                                 <input
                                     type="text"
                                     className="input-field flex-1"
-                                    placeholder="Nama (cth: CS Andi)"
+                                    placeholder={t.agentName}
                                     value={phone.name}
                                     onChange={(e) => updatePhone(index, 'name', e.target.value)}
                                 />
@@ -156,13 +156,13 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
 
                 <button className="add-btn mt-3" onClick={addPhone}>
                     <Plus className="w-4 h-4" />
-                    Tambah Anggota Tim
+                    {t.addAgent}
                 </button>
             </div>
 
             {/* Button Text */}
             <div>
-                <label className="label">Teks Tombol</label>
+                <label className="label">{t.buttonText}</label>
                 <input
                     type="text"
                     className="input-field"
@@ -176,7 +176,7 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
             <div className="glass-card p-3 sm:p-4 bg-gradient-to-r from-blue-500/10 to-transparent border-l-4 border-blue-500">
                 <h4 className="text-white font-semibold mb-2 flex items-center gap-2">
                     <Code className="w-4 h-4" />
-                    Cara Kerja
+                    {t.howItWorks}
                 </h4>
                 <p className="text-slate-400 text-sm">
                     Script ini mendistribusikan pengunjung secara merata menggunakan rotasi Round Robin.
@@ -187,7 +187,7 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Generated Code */}
             <div>
-                <label className="label">Kode yang Dihasilkan</label>
+                <label className="label">{t.generatedCode}</label>
                 <div className="code-box max-h-64 overflow-y-auto">
                     <pre className="text-xs break-all whitespace-pre-wrap">{generateScript()}</pre>
                 </div>
@@ -197,7 +197,7 @@ const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
                     onClick={copyToClipboard}
                 >
                     <Copy className="w-4 h-4" />
-                    {copied ? 'Tersalin!' : 'Salin Kode'}
+                    {copied ? t.copied : t.copyCode}
                 </button>
             </div>
         </div>

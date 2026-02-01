@@ -72,12 +72,12 @@ const LinkCardCheckerTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* URL Input */}
             <div>
-                <label className="label">URL Target</label>
+                <label className="label">{t.enterUrl}</label>
                 <div className="flex flex-col sm:flex-row gap-3">
                     <input
                         type="url"
                         className="input-field flex-1"
-                        placeholder="https://contoh.com"
+                        placeholder={t.urlPlaceholder}
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         onKeyPress={handleKeyPress}
@@ -92,7 +92,7 @@ const LinkCardCheckerTab = ({ setPreviewData, lang = 'en' }) => {
                         ) : (
                             <Search className="w-4 h-4" />
                         )}
-                        {loading ? 'Memeriksa...' : 'Periksa'}
+                        {loading ? t.checking : t.checkButton}
                     </button>
                 </div>
             </div>

@@ -10,7 +10,8 @@ import {
   Sparkles,
   Sun,
   Moon,
-  Globe
+  Globe,
+  X
 } from 'lucide-react'
 import SmartLinkTab from './components/SmartLinkTab'
 import InvoiceModeTab from './components/InvoiceModeTab'
@@ -31,6 +32,7 @@ function App() {
     phone: '',
     linkPreview: null
   })
+  const [activeModal, setActiveModal] = useState(null) // 'privacy', 'terms', 'support', or null
 
   // Get current translation
   const t = translations[lang]
@@ -260,13 +262,107 @@ function App() {
             <img src={N1StackLogo} alt="N1STACK" className={`h-4 ${theme === 'dark' ? 'brightness-0 invert opacity-60' : 'opacity-70'}`} />
           </div>
           <div className="flex gap-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            <a href="#" className="transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.privacy}</a>
-            <a href="#" className="transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.terms}</a>
-            <a href="#" className="transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.support}</a>
+            <button onClick={() => setActiveModal('privacy')} className="hover:text-[#D4FF00] transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.privacy}</button>
+            <button onClick={() => setActiveModal('terms')} className="hover:text-[#D4FF00] transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.terms}</button>
+            <button onClick={() => setActiveModal('support')} className="hover:text-[#D4FF00] transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.support}</button>
           </div>
           <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t.footer.copyright}</span>
         </div>
       </footer>
+
+      {/* Modal Popup */}
+      {activeModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={() => setActiveModal(null)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+          {/* Modal Content */}
+          <div
+            className="relative w-full max-w-md rounded-2xl p-8 pr-12 shadow-2xl"
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setActiveModal(null)}
+              className="absolute top-4 right-4 p-1 rounded-lg transition-colors hover:bg-white/10"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Privacy Modal */}
+            {activeModal === 'privacy' && (
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-[#D4FF00]/20 flex items-center justify-center mb-4">
+                  <span className="text-2xl">🔒</span>
+                </div>
+                <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+                  {t.footer.privacyModal.title}
+                </h3>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-[#D4FF00]/20 text-[#D4FF00]">
+                  {t.footer.privacyModal.subtitle}
+                </span>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t.footer.privacyModal.content}
+                </p>
+              </div>
+            )}
+
+            {/* Terms Modal */}
+            {activeModal === 'terms' && (
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-4">
+                  <span className="text-2xl">⚖️</span>
+                </div>
+                <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+                  {t.footer.termsModal.title}
+                </h3>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-amber-500/20 text-amber-400">
+                  {t.footer.termsModal.subtitle}
+                </span>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t.footer.termsModal.content}
+                </p>
+              </div>
+            )}
+
+            {/* Support Modal */}
+            {activeModal === 'support' && (
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                  <span className="text-2xl">💬</span>
+                </div>
+                <h3 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+                  {t.footer.supportModal.title}
+                </h3>
+                <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-green-500/20 text-green-400">
+                  {t.footer.supportModal.subtitle}
+                </span>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t.footer.supportModal.content}
+                </p>
+                <a
+                  href="https://wa.me/6281234567890?text=Hi%2C%20I%20found%20a%20bug%20on%20Pulse%20Link..."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-semibold text-white transition-all hover:scale-[1.02]"
+                  style={{ background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)' }}
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  {t.footer.supportModal.chatButton}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

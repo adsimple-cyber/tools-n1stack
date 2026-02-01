@@ -138,7 +138,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Phone Number */}
             <div>
-                <label className="label">Nomor WhatsApp</label>
+                <label className="label">{t.phoneNumber}</label>
                 <input
                     type="text"
                     className="input-field"
@@ -150,10 +150,10 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Default Message */}
             <div>
-                <label className="label">Pesan Otomatis</label>
+                <label className="label">{t.welcomeMessage}</label>
                 <textarea
                     className="textarea-field"
-                    placeholder="Halo, saya tertarik dengan..."
+                    placeholder={t.welcomePlaceholder}
                     value={config.message}
                     onChange={(e) => setConfig({ ...config, message: e.target.value })}
                     rows={3}
@@ -163,7 +163,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
             {/* Position & Animation */}
             <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
-                    <label className="label">Posisi</label>
+                    <label className="label">{t.buttonPosition}</label>
                     <select
                         className="select-field"
                         value={config.position}
@@ -176,7 +176,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
                     </select>
                 </div>
                 <div className="flex-1">
-                    <label className="label">Animasi</label>
+                    <label className="label">{t.animation}</label>
                     <select
                         className="select-field"
                         value={config.animation}
@@ -192,7 +192,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Size */}
             <div>
-                <label className="label">Ukuran Tombol: {config.size}px</label>
+                <label className="label">{t.buttonSize}: {config.size}px</label>
                 <input
                     type="range"
                     min="40"
@@ -246,7 +246,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
 
             {/* Generated Code */}
             <div>
-                <label className="label">Kode yang Dihasilkan</label>
+                <label className="label">{t.embedCode}</label>
                 <div className="code-box max-h-48 overflow-y-auto">
                     <pre className="text-xs break-all whitespace-pre-wrap">{generateCode()}</pre>
                 </div>
@@ -256,7 +256,7 @@ const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
                     onClick={copyToClipboard}
                 >
                     <Copy className="w-4 h-4" />
-                    {copied ? 'Tersalin!' : 'Salin Kode Widget'}
+                    {copied ? t.copied : t.copyCode}
                 </button>
             </div>
         </div>

@@ -63,6 +63,7 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -127,6 +128,10 @@ body {
 .tab-nav {
   margin-top: 24px;
   padding: 8px !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 @media (min-width: 768px) {

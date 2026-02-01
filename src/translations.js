@@ -20,8 +20,24 @@ export const translations = {
             poweredBy: 'Powered by',
             privacy: 'Privacy',
             terms: 'Terms',
-            support: 'Support',
-            copyright: '© 2024 All Rights Reserved'
+            support: 'Found a bug? Chat Dev',
+            copyright: '© 2024 All Rights Reserved',
+            privacyModal: {
+                title: 'Privacy Policy',
+                subtitle: 'Client-Side Privacy',
+                content: 'We value your privacy. Unlike other tools, N1STACK Pulse Link processes all data locally in your browser. No phone numbers or messages are stored in our servers.'
+            },
+            termsModal: {
+                title: 'Terms & Disclaimer',
+                subtitle: 'Important Notice',
+                content: 'PULSE LINK is provided "as is". The Safe-Send Analyzer feature is only an estimation indicator. N1STACK is not responsible for any WhatsApp account blocking caused by WhatsApp Inc. policies.'
+            },
+            supportModal: {
+                title: 'Support & Custom Tools',
+                subtitle: 'Get in Touch',
+                content: 'Found a bug? Or want a custom tool like this for your business? Chat with the developer directly.',
+                chatButton: 'Chat Developer'
+            }
         },
         descriptions: [
             {
@@ -121,18 +137,15 @@ export const translations = {
             copied: 'Copied!'
         },
         csRotator: {
-            agentList: 'CS Agent List',
+            agentList: 'Team Phone Numbers',
             agentName: 'Name (e.g: CS Andy)',
-            addAgent: 'Add Agent',
-            greetingTemplate: 'Greeting Template',
-            greetingPlaceholder: 'Hello, I want to ask about...',
-            rotationMode: 'Rotation Mode',
-            roundRobin: 'Round Robin',
-            random: 'Random',
+            addAgent: 'Add Team Member',
+            buttonText: 'Button Text',
+            howItWorks: 'How It Works',
             generatedCode: 'Generated Code',
             copyCode: 'Copy Code',
             copied: 'Copied!',
-            codeDescription: 'This script distributes visitors evenly using Round Robin rotation.'
+            codeDescription: 'This script distributes visitors evenly using Round Robin rotation. Each click is directed to the next number in sequence, stored in localStorage for consistent distribution.'
         },
         widget: {
             phoneNumber: 'WhatsApp Number',
@@ -190,8 +203,24 @@ export const translations = {
             poweredBy: 'Powered by',
             privacy: 'Privasi',
             terms: 'Ketentuan',
-            support: 'Bantuan',
-            copyright: '© 2024 Hak Cipta Dilindungi'
+            support: 'Ada bug? Chat Dev',
+            copyright: '© 2024 Hak Cipta Dilindungi',
+            privacyModal: {
+                title: 'Kebijakan Privasi',
+                subtitle: 'Privasi Sisi Klien',
+                content: 'Kami menghargai privasi Anda. Berbeda dengan tools lain, N1STACK Pulse Link memproses semua data secara lokal di browser Anda. Tidak ada nomor telepon atau pesan yang disimpan di server kami.'
+            },
+            termsModal: {
+                title: 'Syarat & Ketentuan',
+                subtitle: 'Pemberitahuan Penting',
+                content: 'PULSE LINK disediakan "sebagaimana adanya". Fitur Safe-Send Analyzer hanyalah indikator estimasi. N1STACK tidak bertanggung jawab atas pemblokiran akun WhatsApp yang disebabkan oleh kebijakan WhatsApp Inc.'
+            },
+            supportModal: {
+                title: 'Bantuan & Custom Tools',
+                subtitle: 'Hubungi Kami',
+                content: 'Menemukan bug? Atau ingin custom tool seperti ini untuk bisnis Anda? Chat langsung dengan developer.',
+                chatButton: 'Chat Developer'
+            }
         },
         descriptions: [
             {
@@ -291,18 +320,15 @@ export const translations = {
             copied: 'Tersalin!'
         },
         csRotator: {
-            agentList: 'Daftar Agen CS',
+            agentList: 'Nomor Telepon Tim',
             agentName: 'Nama (cth: CS Andi)',
-            addAgent: 'Tambah Agen',
-            greetingTemplate: 'Template Sambutan',
-            greetingPlaceholder: 'Halo, saya ingin bertanya tentang...',
-            rotationMode: 'Mode Rotasi',
-            roundRobin: 'Round Robin',
-            random: 'Acak',
+            addAgent: 'Tambah Anggota Tim',
+            buttonText: 'Teks Tombol',
+            howItWorks: 'Cara Kerja',
             generatedCode: 'Kode yang Dihasilkan',
             copyCode: 'Salin Kode',
             copied: 'Tersalin!',
-            codeDescription: 'Script ini mendistribusikan pengunjung secara merata menggunakan rotasi Round Robin.'
+            codeDescription: 'Script ini mendistribusikan pengunjung secara merata menggunakan rotasi Round Robin. Setiap klik diarahkan ke nomor berikutnya secara berurutan, disimpan di localStorage untuk distribusi yang konsisten.'
         },
         widget: {
             phoneNumber: 'Nomor WhatsApp',
