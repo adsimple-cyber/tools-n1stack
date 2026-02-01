@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Users, Plus, Trash2, Copy, Code } from 'lucide-react'
+import { translations } from '../translations'
 
-const CSRotatorTab = ({ setPreviewData }) => {
+const CSRotatorTab = ({ setPreviewData, lang = 'en' }) => {
+    const t = translations[lang].csRotator
     const [phones, setPhones] = useState([
         { number: '+62812345678', name: 'CS 1 - Andi' },
         { number: '+62823456789', name: 'CS 2 - Budi' },

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Search, CheckCircle, XCircle, Loader2, ExternalLink, Image } from 'lucide-react'
 import axios from 'axios'
+import { translations } from '../translations'
 
-const LinkCardCheckerTab = ({ setPreviewData }) => {
+const LinkCardCheckerTab = ({ setPreviewData, lang = 'en' }) => {
+    const t = translations[lang].checker
     const [url, setUrl] = useState('')
     const [loading, setLoading] = useState(false)
     const [metadata, setMetadata] = useState(null)

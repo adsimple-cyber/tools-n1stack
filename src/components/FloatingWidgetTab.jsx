@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { MessageCircle, Copy, Eye } from 'lucide-react'
+import { translations } from '../translations'
 
-const FloatingWidgetTab = ({ setPreviewData }) => {
+const FloatingWidgetTab = ({ setPreviewData, lang = 'en' }) => {
+    const t = translations[lang].widget
     const [config, setConfig] = useState({
         position: 'bottom-right',
         animation: 'pulse',

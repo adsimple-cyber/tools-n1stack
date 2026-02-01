@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, AlertTriangle, CheckCircle, XCircle, Copy, ExternalLink, Bold, Italic, Strikethrough, ChevronDown } from 'lucide-react'
+import { translations } from '../translations'
 
 // Spam keywords to detect
 const SPAM_KEYWORDS = ['GRATIS', 'PROMO', 'DISKON', 'KLIK', 'WIN', 'FREE', 'BONUS', 'HADIAH', 'MENANG']
@@ -29,7 +30,8 @@ const COUNTRY_CODES = [
     { code: '+52', country: 'Mexico', iso: 'MX' },
 ]
 
-const SmartLinkTab = ({ setPreviewData }) => {
+const SmartLinkTab = ({ setPreviewData, lang = 'en' }) => {
+    const t = translations[lang].smartLink
     const [countryCode, setCountryCode] = useState('+62')
     const [phone, setPhone] = useState('')
     const [message, setMessage] = useState('')
@@ -101,22 +103,22 @@ const SmartLinkTab = ({ setPreviewData }) => {
             return {
                 className: 'spam-safe',
                 icon: <CheckCircle className="w-5 h-5" />,
-                text: '✅ Aman & Natural',
-                subtext: 'Pesan Anda terlihat otentik'
+                text: t.safeNatural,
+                subtext: t.safeSubtext
             }
         } else if (spamScore <= 70) {
             return {
                 className: 'spam-warning',
                 icon: <AlertTriangle className="w-5 h-5" />,
-                text: '⚠️ Hati-hati',
-                subtext: 'Kurangi kata-kata promosi'
+                text: t.warningText,
+                subtext: t.warningSubtext
             }
         } else {
             return {
                 className: 'spam-danger',
                 icon: <XCircle className="w-5 h-5" />,
-                text: '⛔ RISIKO BLOKIR TINGGI!',
-                subtext: 'Kurangi huruf kapital & kata spam'
+                text: t.dangerText,
+                subtext: t.dangerSubtext
             }
         }
     }
@@ -171,7 +173,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
 
             {/* Phone Input with Country Code Selector */}
             <div>
-                <label className="label">Nomor Telepon</label>
+                <label className="label">{t.phoneNumber}</label>
                 <div className="flex flex-col sm:flex-row gap-2">
                     {/* Country Code Dropdown */}
                     <div className="relative" ref={dropdownRef}>
@@ -225,33 +227,33 @@ const SmartLinkTab = ({ setPreviewData }) => {
                         onChange={(e) => setPhone(e.target.value)}
                     />
                 </div>
-                <p className="text-xs text-slate-500 mt-2">Masukkan nomor tanpa 0 atau kode negara</p>
+                <p className="text-xs text-slate-500 mt-2">{t.phoneHint}</p>
             </div>
 
             {/* Message Input with Toolbar */}
             <div>
-                <label className="label">Template Pesan</label>
+                <label className="label">{t.messageTemplate}</label>
 
                 {/* Rich Text Toolbar */}
                 <div className="flex gap-2 mb-3">
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('*', '*')}
-                        title="Tebal"
+                        title={t.bold}
                     >
                         <Bold className="w-4 h-4" />
                     </button>
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('_', '_')}
-                        title="Miring"
+                        title={t.italic}
                     >
                         <Italic className="w-4 h-4" />
                     </button>
                     <button
                         className="toolbar-btn"
                         onClick={() => insertFormatting('~', '~')}
-                        title="Coret"
+                        title={t.strikethrough}
                     >
                         <Strikethrough className="w-4 h-4" />
                     </button>
@@ -260,7 +262,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
                 <textarea
                     ref={textareaRef}
                     className="textarea-field"
-                    placeholder="Ketik pesan Anda... Gunakan *tebal*, _miring_, ~coret~"
+                    placeholder={t.messagePlaceholder}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={5}
@@ -269,7 +271,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
 
             {/* Spam Score Indicator */}
             <div>
-                <label className="label">Safe-Send Analyzer</label>
+                <label className="label">{t.safeSendAnalyzer}</label>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                     {/* Score Circle */}
                     <div className="relative w-20 h-20 flex-shrink-0">
@@ -318,7 +320,7 @@ const SmartLinkTab = ({ setPreviewData }) => {
             {/* Generated Link */}
             {phone && message && (
                 <div>
-                    <label className="label">Link yang Dihasilkan</label>
+                    <label className="label">{t.generatedLink}</label>
                     <div className="code-box overflow-x-auto">
                         <pre className="text-xs break-all whitespace-pre-wrap">{generateLink()}</pre>
                     </div>
@@ -326,11 +328,11 @@ const SmartLinkTab = ({ setPreviewData }) => {
                     <div className="flex flex-col sm:flex-row gap-3 mt-4">
                         <button className="btn-neon flex-1 flex items-center justify-center gap-2" onClick={copyToClipboard}>
                             <Copy className="w-4 h-4" />
-                            {copied ? 'Tersalin!' : 'Salin Link'}
+                            {copied ? t.copied : t.copyLink}
                         </button>
                         <button className="btn-secondary flex items-center justify-center gap-2 px-6" onClick={openLink}>
                             <ExternalLink className="w-4 h-4" />
-                            Coba
+                            {t.tryIt}
                         </button>
                     </div>
                 </div>

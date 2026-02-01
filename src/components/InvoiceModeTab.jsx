@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { FileText, Copy, Plus, Trash2 } from 'lucide-react'
+import { translations } from '../translations'
 
-const InvoiceModeTab = ({ setPreviewData }) => {
+const InvoiceModeTab = ({ setPreviewData, lang = 'en' }) => {
+    const t = translations[lang].invoice
     const [items, setItems] = useState([
         { name: 'Pembuatan Website', qty: 1, price: 5000000 }
     ])
@@ -99,7 +101,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
 
             {/* Items */}
             <div>
-                <label className="label">Daftar Item</label>
+                <label className="label">{t.itemList}</label>
                 <div className="space-y-3">
                     {items.map((item, index) => (
                         <div key={index} className="glass-card p-3 sm:p-4 space-y-3">
@@ -118,14 +120,14 @@ const InvoiceModeTab = ({ setPreviewData }) => {
                             <input
                                 type="text"
                                 className="input-field"
-                                placeholder="Nama Produk/Jasa"
+                                placeholder={t.productName}
                                 value={item.name}
                                 onChange={(e) => updateItem(index, 'name', e.target.value)}
                             />
 
                             <div className="flex flex-col sm:flex-row gap-3">
                                 <div className="flex-1">
-                                    <label className="text-xs text-slate-500 mb-1 block">Jumlah</label>
+                                    <label className="text-xs text-slate-500 mb-1 block">{t.quantity}</label>
                                     <input
                                         type="number"
                                         className="input-field"
@@ -136,7 +138,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
                                     />
                                 </div>
                                 <div className="flex-1">
-                                    <label className="text-xs text-slate-500 mb-1 block">Harga (Rp)</label>
+                                    <label className="text-xs text-slate-500 mb-1 block">{t.price}</label>
                                     <input
                                         type="number"
                                         className="input-field"
@@ -149,7 +151,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
                             </div>
 
                             <div className="pt-2 border-t border-white/5 flex justify-between items-center">
-                                <span className="text-xs text-slate-500">Subtotal</span>
+                                <span className="text-xs text-slate-500">{t.subtotal}</span>
                                 <span className="text-[#D4FF00] font-bold text-sm sm:text-base">{formatCurrency(item.qty * item.price)}</span>
                             </div>
                         </div>
@@ -158,40 +160,40 @@ const InvoiceModeTab = ({ setPreviewData }) => {
 
                 <button className="add-btn mt-3" onClick={addItem}>
                     <Plus className="w-4 h-4" />
-                    Tambah Item
+                    {t.addItem}
                 </button>
             </div>
 
             {/* Total */}
             <div className="glass-card p-3 sm:p-4 bg-gradient-to-r from-[#D4FF00]/10 to-transparent border-l-4 border-[#D4FF00]">
                 <div className="flex justify-between items-center">
-                    <span className="text-base sm:text-lg font-bold text-white">Total</span>
+                    <span className="text-base sm:text-lg font-bold text-white">{t.total}</span>
                     <span className="text-lg sm:text-2xl font-bold text-[#D4FF00]">{formatCurrency(calculateTotal())}</span>
                 </div>
             </div>
 
             {/* Bank Info */}
             <div>
-                <label className="label">Informasi Pembayaran</label>
+                <label className="label">{t.paymentInfo}</label>
                 <div className="flex flex-col gap-3">
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Nama Bank"
+                        placeholder={t.bankName}
                         value={bankInfo.bankName}
                         onChange={(e) => setBankInfo({ ...bankInfo, bankName: e.target.value })}
                     />
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Nomor Rekening"
+                        placeholder={t.accountNumber}
                         value={bankInfo.accountNumber}
                         onChange={(e) => setBankInfo({ ...bankInfo, accountNumber: e.target.value })}
                     />
                     <input
                         type="text"
                         className="input-field"
-                        placeholder="Nama Pemilik Rekening"
+                        placeholder={t.accountHolder}
                         value={bankInfo.accountHolder}
                         onChange={(e) => setBankInfo({ ...bankInfo, accountHolder: e.target.value })}
                     />
@@ -201,7 +203,7 @@ const InvoiceModeTab = ({ setPreviewData }) => {
             {/* Generate Button */}
             <button className="btn-neon w-full flex items-center justify-center gap-2" onClick={copyToClipboard}>
                 <Copy className="w-4 h-4" />
-                {copied ? 'Tersalin!' : 'Salin Pesan Invoice'}
+                {copied ? t.copied : t.copyInvoice}
             </button>
         </div>
     )
