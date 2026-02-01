@@ -148,20 +148,26 @@ function App() {
 
       {/* Main Content */}
       {/* Main Content */}
-      <main className="relative z-10 flex-1 container-padded pt-12 pb-12 lg:pt-32 lg:pb-32">
+      {/* Main Content */}
+      {/* Main Content */}
+      {/* Main Content */}
+      <main className="relative z-10 flex-1 container-padded pb-12 lg:pb-32" style={{ paddingTop: '60px' }}>
         {/* Top Description Section */}
-        <div className="flex flex-col items-center text-center mb-12 max-w-5xl mx-auto py-10 border-b border-white/5 gap-8">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto py-8 border-b border-white/5 gap-4" style={{ marginTop: '20px', marginBottom: '60px' }}>
           <h3 className="text-4xl font-bold text-white mb-2">{currentDescription.title}</h3>
           <p className="text-[#D4FF00] font-medium mb-4 text-xl tracking-wide">{currentDescription.subtitle}</p>
           <p className="text-slate-400 leading-relaxed text-lg max-w-4xl">{currentDescription.description}</p>
 
-          {/* How to Use - Centered Block with explicit bottom padding */}
-          <div className="bg-white/5 p-8 pb-12 rounded-3xl border border-white/5 max-w-5xl w-full text-left shadow-xl backdrop-blur-sm">
-            <h4 className="text-white font-semibold mb-6 flex items-center justify-center gap-3 text-lg">
+          {/* How to Use Card - balanced padding */}
+          <div
+            className="bg-white/5 rounded-3xl border border-white/5 max-w-5xl w-full text-left shadow-xl backdrop-blur-sm"
+            style={{ padding: '32px', paddingBottom: '40px', marginTop: '16px' }}
+          >
+            <h4 className="text-white font-semibold flex items-center justify-center gap-3 text-lg" style={{ marginBottom: '40px' }}>
               <span className="w-6 h-6 rounded-full bg-[#D4FF00]/20 flex items-center justify-center text-[#D4FF00] text-sm">?</span>
               How to Use
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ padding: '0 16px 16px 16px' }}>
               {currentDescription.howTo.map((step, index) => (
                 <div key={index} className="flex gap-3 text-sm items-start">
                   <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[#D4FF00] text-xs font-bold flex-shrink-0 mt-0.5">
@@ -171,12 +177,23 @@ function App() {
                 </div>
               ))}
             </div>
+
+            {/* Mobile Tip Note */}
+            <div
+              className="bg-slate-800/50 rounded-xl border border-slate-700/50 flex items-center gap-4"
+              style={{ margin: '24px 20px 0 20px', padding: '20px' }}
+            >
+              <span className="text-xl flex-shrink-0">📱</span>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                <span className="text-[#D4FF00] font-medium">Tips untuk pengguna mobile:</span> Untuk pengalaman terbaik, aktifkan mode <strong className="text-white">"Situs Desktop"</strong> di pengaturan browser Anda.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="flex gap-8 xl:gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 items-start">
           {/* Left Side - Form Content */}
-          <div className="flex-1 flex flex-col gap-8 min-w-0">
+          <div className="flex-1 flex flex-col gap-8 min-w-0 order-1">
 
 
             {/* Tabs Navigation */}
@@ -200,8 +217,10 @@ function App() {
             </div>
           </div>
 
-          {/* Right Side - Phone Preview */}
-          <PhonePreview previewData={previewData} />
+          {/* Right Side - Phone Preview (shows below form on mobile) */}
+          <div className="order-2 w-full lg:w-auto flex justify-center lg:block">
+            <PhonePreview previewData={previewData} />
+          </div>
         </div>
       </main>
 
