@@ -146,9 +146,14 @@ function App() {
             >
               {lang.toUpperCase()}
             </button>
-            <div className="hidden md:flex items-center gap-3">
-              <span className="text-xs font-medium tracking-wide" style={{ color: 'var(--color-text-muted)' }}>{t.header.tagline}</span>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--color-neon-lime)', boxShadow: '0 0 10px var(--color-neon-lime)' }}></div>
+            <div className="hidden md:flex items-center">
+              <a href="https://www.producthunt.com/products/pulse-link?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-pulse-link" target="_blank" rel="noopener noreferrer">
+                <img
+                  alt="PULSE LINK - Smart WA Links, Invoices & Rotators. 100% Free | Product Hunt"
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1071414&theme=neutral&t=1770003884805"
+                  style={{ height: '40px', width: 'auto' }}
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -257,6 +262,17 @@ function App() {
         }}
       >
         <div className="container-padded footer-container flex flex-col md:flex-row items-center justify-between gap-4">
+
+          {/* Mobile Product Hunt Embed */}
+          <div className="md:hidden flex justify-center w-full mb-2">
+            <a href="https://www.producthunt.com/products/pulse-link?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-pulse-link" target="_blank" rel="noopener noreferrer">
+              <img
+                alt="PULSE LINK - Smart WA Links, Invoices & Rotators. 100% Free | Product Hunt"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1071414&theme=neutral&t=1770003884805"
+                className="h-10 w-auto"
+              />
+            </a>
+          </div>
           <div className="flex items-center gap-2">
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t.footer.poweredBy}</span>
             <a href="https://n1stack.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
