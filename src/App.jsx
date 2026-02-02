@@ -112,7 +112,7 @@ function App() {
                 <Sparkles className="w-4 h-4" style={{ color: 'var(--color-neon-lime)' }} />
               </h1>
               <p className="text-xs flex items-center gap-1" style={{ color: 'var(--color-text-muted)' }}>
-                by <img src={N1StackLogo} alt="N1STACK" className={`h-4 ${theme === 'dark' ? 'brightness-0 invert opacity-60' : 'opacity-70'}`} />
+                by <a href="https://n1stack.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity"><img src={N1StackLogo} alt="N1STACK" className={`h-4 ${theme === 'dark' ? 'brightness-0 invert opacity-60' : 'opacity-70'}`} /></a>
               </p>
             </div>
           </div>
@@ -259,7 +259,9 @@ function App() {
         <div className="container-padded footer-container flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t.footer.poweredBy}</span>
-            <img src={N1StackLogo} alt="N1STACK" className={`h-4 ${theme === 'dark' ? 'brightness-0 invert opacity-60' : 'opacity-70'}`} />
+            <a href="https://n1stack.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
+              <img src={N1StackLogo} alt="N1STACK" className={`h-4 ${theme === 'dark' ? 'brightness-0 invert opacity-60' : 'opacity-70'}`} />
+            </a>
           </div>
           <div className="flex gap-6 text-xs" style={{ color: 'var(--color-text-muted)' }}>
             <button onClick={() => setActiveModal('privacy')} className="hover:text-[#D4FF00] transition-colors" style={{ color: 'var(--color-text-muted)' }}>{t.footer.privacy}</button>
