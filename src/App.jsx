@@ -281,10 +281,11 @@ function App() {
 
           {/* Modal Content */}
           <div
-            className="relative w-full max-w-md rounded-2xl p-8 pr-12 shadow-2xl"
+            className="relative w-full max-w-md rounded-2xl shadow-2xl"
             style={{
               backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)'
+              border: '1px solid var(--color-border)',
+              padding: '40px 48px 40px 48px'
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -352,8 +353,12 @@ function App() {
                   href="https://wa.me/6281234567890?text=Hi%2C%20I%20found%20a%20bug%20on%20Pulse%20Link..."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-semibold text-white transition-all hover:scale-[1.02]"
-                  style={{ background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)' }}
+                  className="flex items-center justify-center gap-2 w-full rounded-xl font-semibold text-white transition-all hover:scale-[1.02]"
+                  style={{
+                    background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                    marginTop: '24px',
+                    padding: '16px 24px'
+                  }}
                 >
                   <MessageCircle className="w-5 h-5" />
                   {t.footer.supportModal.chatButton}
